@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Salman's Key Concepts</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Salman's Key Concepts</h1>
+    <nav>
+      <ul class="menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="topic-devon.html">Devon’s Topic</a></li>
+        <li><a href="topic-jermaine.html">Jermaine’s Topic</a></li>
+        <li><a href="topic-salman.html">Salman’s Topic</a></li>
+        <li><a href="concepts.html">Key Concepts</a></li>
+        <li><a href="references.html">References</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <ol>
+      <li>
+        <strong>Concept 1 – Responsive Web Design:</strong> 
+        A design approach that ensures websites adapt to different screen sizes and devices. It helps maintain usability and visual balance across desktops, tablets, and smartphones.
+      </li>
+
+      <li>
+        <strong>Concept 2 – CSS Flexbox:</strong> 
+        A modern layout model that allows developers to align and distribute space among items in a container, even when their size is unknown or dynamic. It’s ideal for creating responsive navigation bars and grids.
+      </li>
+
+      <li>
+        <strong>Concept 3 – CSS Grid:</strong> 
+        A two-dimensional layout system that enables precise arrangement of elements into rows and columns. Grid layouts make it easier to organize content consistently across a site.
+      </li>
+
+      <li>
+        <strong>Concept 4 – Media Queries:</strong> 
+        A core feature of CSS that applies different styles depending on screen size, resolution, or orientation. Media queries are what make websites mobile-friendly.
+      </li>
+
+      <li>
+        <strong>Concept 5 – Semantic HTML:</strong> 
+        The use of meaningful tags such as <code>&lt;header&gt;</code>, <code>&lt;section&gt;</code>, and <code>&lt;footer&gt;</code> to improve accessibility and SEO while giving structure to web pages.
+      </li>
+
+      <li>
+        <strong>Concept 6 – CSS Selectors:</strong> 
+        Patterns used to target and style specific HTML elements. Common types include class selectors (<code>.classname</code>), ID selectors (<code>#id</code>), and element selectors (<code>h1</code>).
+      </li>
+
+      <li>
+        <strong>Concept 7 – Hover Effects:</strong> 
+        A CSS technique that changes the appearance of a webpage element when the user hovers over it. This adds interactivity and enhances the user experience.
+      </li>
+    </ol>
+  </main>
+
+  <footer>
+    <p>This is a class project for IT 3203. Visit the <a href="https://ksuweb.github.io/IT3203/">course site</a>.</p>
+  </footer>
+</body>
+</html>
