@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Salman's Topic</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Salman's Topic</h1>
+    <nav>
+      <ul class="menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="topic-devon.html">Devon’s Topic</a></li>
+        <li><a href="topic-jermaine.html">Jermaine’s Topic</a></li>
+        <li><a href="concepts.html">Key Concepts</a></li>
+        <li><a href="references.html">References</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section>
+      <h2>About Salman</h2>
+      <p>
+        My name is <strong>Mirza Salman Baig</strong>, and I’m an Information Technology student passionate about how web development connects user experience, data, and functionality. 
+        I enjoy learning how front-end technologies like HTML, CSS, and JavaScript come together to create intuitive and responsive designs.
+      </p>
+    </section>
+
+    <section>
+      <h2>My Role in the Project</h2>
+      <p>
+        For this milestone, my main role was to develop the introduction and key concepts sections, ensuring that the site’s structure followed clean HTML formatting and consistent CSS styling. 
+        I also helped maintain visual consistency across all team pages by aligning the navigation bar, color theme, and footer structure.
+      </p>
+    </section>
+
+    <section>
+      <h2>Topic: Responsive Web Design</h2>
+      <p>
+        My research topic focuses on <strong>Responsive Web Design</strong> — the practice of designing websites that automatically adjust layout and content for different screen sizes. 
+        This approach ensures accessibility and usability across devices such as smartphones, tablets, and desktops.
+      </p>
+      <ul>
+        <li>Using flexible grids and layouts.</li>
+        <li>Applying media queries for screen adaptability.</li>
+        <li>Optimizing typography and images for performance.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Why This Topic Matters</h2>
+      <p>
+        Responsive design has become a cornerstone of modern web development. 
+        It enhances user satisfaction, reduces maintenance effort, and improves SEO performance. 
+        Learning it early helps build strong front-end skills and prepares developers for real-world applications.
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    <p>This website is created as part of <strong>KSU IT 3203 Web Development</strong>. 
+    Visit the <a href="https://ksuweb.github.io/IT3203/" target="_blank">course site</a>.</p>
+  </footer>
+</body>
+</html>
