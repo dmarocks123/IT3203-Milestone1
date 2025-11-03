@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTML History Quiz</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Simple inline quiz styling */
+    body { font-family: Arial, sans-serif; margin: 20px; background-color: #f8f9fa; }
+    main { max-width: 800px; margin: auto; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+    h1, h2 { text-align: center; }
+    .question { margin-bottom: 20px; }
+    .result { font-weight: bold; margin-top: 10px; }
+    .correct { color: green; }
+    .incorrect { color: red; }
+    button { background: #007bff; color: white; border: none; padding: 10px 15px; border-radius: 6px; cursor: pointer; }
+    button:hover { background: #0056b3; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>HTML History Quiz</h1>
+    <nav>
+      <ul class="menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="topic-devon.html">Devon’s Topic</a></li>
+        <li><a href="topic-jermaine.html">Jermaine’s Topic</a></li>
+        <li><a href="topic-salman.html">Salman’s Topic</a></li>
+        <li><a href="jermaine-concepts.html">Jermaine’s Key Concepts</a></li>
+        <li><a href="salmans-concepts.html">Salman’s Key Concepts</a></li>
+        <li><a href="references.html">References</a></li>
+        <li><a href="concepts.html">Key Concepts</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="quiz.html">Quiz</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <h2>Test Your Knowledge of HTML’s History!</h2>
+
+    <form id="quizForm">
+      <!-- Fill-in-the-blank -->
+      <div class="question">
+        <p>1. Who is the creator of the first version of HTML?</p>
+        <input type="text" name="q1">
+      </div>
+
+      <!-- Multiple choice -->
+      <div class="question">
+        <p>2. What year was HTML 1.0 created?</p>
+        <label><input type="radio" name="q2" value="1989"> 1989</label><br>
+        <label><input type="radio" name="q2" value="1991"> 1991</label><br>
+        <label><input type="radio" name="q2" value="1995"> 1995</label><br>
+        <label><input type="radio" name="q2" value="2000"> 2000</label>
+      </div>
+
+      <div class="question">
+        <p>3. Which HTML version introduced support for CSS?</p>
+        <label><input type="radio" name="q3" value="HTML2"> HTML 2.0</label><br>
+        <label><input type="radio" name="q3" value="HTML4"> HTML 4.01</label><br>
+        <label><input type="radio" name="q3" value="HTML5"> HTML5</label><br>
+        <label><input type="radio" name="q3" value="XHTML"> XHTML</label>
+      </div>
+
+      <div class="question">
+        <p>4. What was the main goal of XHTML?</p>
+        <label><input type="radio" name="q4" value="flexibility"> Add flexibility for multimedia</label><br>
+        <label><input type="radio" name="q4" value="strictness"> Enforce stricter coding rules</label><br>
+        <label><input type="radio" name="q4" value="animation"> Add animations</label><br>
+        <label><input type="radio" name="q4" value="speed"> Improve browser speed</label>
+      </div>
+
+      <!-- Multi-select -->
+      <div class="question">
+        <p>5. Which of the following are features of HTML5? (Select all that apply)</p>
+        <label><input type="checkbox" name="q5" value="video"> Built-in video and audio support</label><br>
+        <label><input type="checkbox" name="q5" value="canvas"> Canvas for graphics</label><br>
+        <label><input type="checkbox" name="q5" value="tables"> Tables for layout</label><br>
+        <label><input type="checkbox" name="q5" value="apis"> APIs for web apps</label>
+      </div>
+
+      <button type="button" onclick="gradeQuiz()">Submit</button>
+      <button type="reset">Reset</button>
+    </form>
+
+    <div id="results"></div>
+  </main>
+
+  <footer>
+    <p>This is a class project for IT 3203. Visit the <a href="https://ksuweb.github.io/IT3203/">course site</a>.</p>
+  </footer>
+
+  <script>
+    // Function to grade quiz
+    function gradeQuiz() {
+      const resultsDiv = document.getElementById('results');
+      resultsDiv.innerHTML = ''; // Clear previous results
+      let score = 0;
+
+      // Correct answers
+      const answers = {
+        q1: 'Tim Berners-Lee',
+        q2: '1991',
+        q3: 'HTML4',
+        q4: 'strictness',
+        q5: ['video', 'canvas', 'apis']
+      };
+
+      // Get user input
+      const form = document.forms['quizForm'];
+      let feedback = '';
+
+      // Check Question 1
+      const q1 = form.q1.value.trim();
+      if (q1.toLowerCase() === answers.q1.toLowerCase()) { score++; feedback += `<p class='correct'>1. Correct! (${answers.q1})</p>`; }
+      else { feedback += `<p class='incorrect'>1. Incorrect. Correct answer: ${answers.q1}</p>`; }
+
+      // Check Question 2–4
+      for (let i = 2; i <= 4; i++) {
+        const userAnswer = form[`q${i}`].value;
+        if (userAnswer === answers[`q${i}`]) { score++; feedback += `<p class='correct'>${i}. Correct!</p>`; }
+        else { feedback += `<p class='incorrect'>${i}. Incorrect.</p>`; }
+      }
+
+      // Check Question 5 (multi-select)
+      const q5Values = Array.from(form.q5).filter(cb => cb.checked).map(cb => cb.value);
+      const correctQ5 = answers.q5;
+      const correctCount = q5Values.filter(v => correctQ5.includes(v)).length;
+      if (correctCount === correctQ5.length && q5Values.length === correctQ5.length) {
+        score++; feedback += `<p class='correct'>5. Correct!</p>`;
+      } else {
+        feedback += `<p class='incorrect'>5. Incorrect. Correct answers: ${correctQ5.join(', ')}</p>`;
+      }
+
+      // Final result
+      const total = 5;
+      const percent = (score / total) * 100;
+      const passFail = percent >= 60 ? 'Pass' : 'Fail';
+      const color = percent >= 60 ? 'green' : 'red';
+      resultsDiv.innerHTML = `
+        <h3 style='color:${color}'>${passFail} – Score: ${score}/${total} (${percent.toFixed(0)}%)</h3>
+        ${feedback}
+      `;
+    }
+  </script>
+</body>
+</html>
