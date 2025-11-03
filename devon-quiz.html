@@ -3,402 +3,227 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Devon's HTML History Quiz</title>
+    <title>Devon’s HTML History Quiz</title>
+    <link rel="stylesheet" href="style.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        /* --- Inline quiz styles --- */
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #00c6ff 0%, #0072ff 100%);
             min-height: 100vh;
-            padding: 20px;
+            margin: 0;
+            padding: 0;
         }
-
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
-            overflow: hidden;
-        }
-
-        .header {
-            background: linear-gradient(135deg, #00c6ff 0%, #0072ff 100%);
+        header {
+            background-color: #0072ff;
             color: white;
-            padding: 30px;
+            padding: 15px 0;
             text-align: center;
         }
-
-        .header h1 {
-            font-size: 2em;
-            margin-bottom: 10px;
+        .menu {
+            display: flex;
+            justify-content: center;
+            list-style-type: none;
+            background: #0056b3;
+            padding: 10px;
+            margin: 0;
+            flex-wrap: wrap;
         }
-
-        .header p {
-            font-size: 1.1em;
-            opacity: 0.9;
+        .menu li {
+            margin: 0 10px;
         }
-
-        .quiz-form {
-            padding: 40px;
+        .menu a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
         }
-
+        .menu a:hover {
+            text-decoration: underline;
+        }
+        main {
+            max-width: 850px;
+            margin: 40px auto;
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        }
+        h1, h2 {
+            text-align: center;
+            color: #0072ff;
+        }
         .question-block {
-            margin-bottom: 35px;
-            padding: 25px;
+            margin-bottom: 30px;
             background: #f8f9fa;
+            padding: 20px;
             border-radius: 10px;
-            border-left: 4px solid #0072ff;
+            border-left: 5px solid #0072ff;
         }
-
-        .question-block h3 {
-            color: #333;
-            margin-bottom: 15px;
-            font-size: 1.2em;
-        }
-
         .question-type {
-            display: inline-block;
             background: #0072ff;
             color: white;
-            padding: 4px 12px;
-            border-radius: 20px;
+            padding: 3px 10px;
+            border-radius: 15px;
             font-size: 0.8em;
-            margin-bottom: 10px;
-            font-weight: 600;
         }
-
         input[type="text"] {
             width: 100%;
-            padding: 12px;
-            border: 2px solid #ddd;
-            border-radius: 8px;
+            padding: 10px;
             font-size: 1em;
-            transition: border-color 0.3s;
-        }
-
-        input[type="text"]:focus {
-            outline: none;
-            border-color: #0072ff;
-        }
-
-        .radio-group, .checkbox-group {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .option {
-            display: flex;
-            align-items: center;
-            padding: 12px;
-            background: white;
+            border-radius: 8px;
             border: 2px solid #ddd;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s;
         }
-
-        .option:hover {
-            border-color: #0072ff;
-            background: #f0f8ff;
+        input[type="radio"], input[type="checkbox"] {
+            margin-right: 10px;
         }
-
-        .option input {
-            margin-right: 12px;
-            width: 20px;
-            height: 20px;
-            cursor: pointer;
-        }
-
-        .button-group {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            margin-top: 30px;
-        }
-
         button {
-            padding: 15px 40px;
-            font-size: 1.1em;
+            background: #0072ff;
+            color: white;
             border: none;
+            padding: 12px 20px;
             border-radius: 8px;
             cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s;
+            font-size: 1em;
+            font-weight: bold;
+            margin: 5px;
         }
-
-        .submit-btn {
-            background: linear-gradient(135deg, #00c6ff 0%, #0072ff 100%);
-            color: white;
+        button:hover {
+            background: #0056b3;
         }
-
-        .submit-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 20px rgba(0, 114, 255, 0.4);
-        }
-
-        .reset-btn {
-            background: #6c757d;
-            color: white;
-            display: none;
-        }
-
-        .reset-btn:hover {
-            background: #5a6268;
-        }
-
         .results {
             display: none;
-            padding: 30px;
-            background: #f8f9fa;
-            border-radius: 10px;
             margin-top: 30px;
-        }
-
-        .results.show {
-            display: block;
-        }
-
-        .overall-result {
-            text-align: center;
-            padding: 25px;
+            padding: 20px;
             border-radius: 10px;
-            margin-bottom: 25px;
-            font-size: 1.3em;
-            font-weight: 600;
+            background: #f1f1f1;
         }
-
         .pass {
             background: #d4edda;
             color: #155724;
-            border: 2px solid #c3e6cb;
         }
-
         .fail {
             background: #f8d7da;
             color: #721c24;
-            border: 2px solid #f5c6cb;
         }
-
-        .score-display {
+        .correct {
+            color: green;
+        }
+        .incorrect {
+            color: red;
+        }
+        footer {
             text-align: center;
-            font-size: 2.5em;
-            font-weight: bold;
-            color: #0072ff;
-            margin: 20px 0;
-        }
-
-        .question-result {
             padding: 20px;
-            margin-bottom: 15px;
-            background: white;
-            border-radius: 8px;
-            border-left: 4px solid #ddd;
-        }
-
-        .question-result.correct {
-            border-left-color: #28a745;
-            background: #f0fff4;
-        }
-
-        .question-result.incorrect {
-            border-left-color: #dc3545;
-            background: #fff5f5;
-        }
-
-        @media (max-width: 600px) {
-            .quiz-form {
-                padding: 20px;
-            }
-            .header h1 {
-                font-size: 1.5em;
-            }
-            .button-group {
-                flex-direction: column;
-            }
+            background: #0056b3;
+            color: white;
+            margin-top: 40px;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>🧠 Devon’s HTML History Quiz</h1>
-            <p>Test your understanding of how HTML evolved over time!</p>
-        </div>
+    <header>
+        <h1>Devon’s HTML History Quiz</h1>
+        <nav>
+            <ul class="menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="topic-devon.html">Devon’s Topic</a></li>
+                <li><a href="topic-jermaine.html">Jermaine’s Topic</a></li>
+                <li><a href="topic-salman.html">Salman’s Topic</a></li>
+                <li><a href="jermaine-concepts.html">Jermaine’s Key Concepts</a></li>
+                <li><a href="salmans-concepts.html">Salman’s Key Concepts</a></li>
+                <li><a href="references.html">References</a></li>
+                <li><a href="concepts.html">Key Concepts</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="devon-quiz.html">Devon’s Quiz</a></li>
+            </ul>
+        </nav>
+    </header>
 
-        <div class="quiz-form">
-            <form id="quizForm">
-                <!-- Fill-in-the-blank -->
-                <div class="question-block">
-                    <span class="question-type">Fill in the Blank</span>
-                    <h3>1. The creator of the first version of HTML is __________.</h3>
-                    <input type="text" id="q1" name="q1" placeholder="Type your answer here" required>
-                </div>
+    <main>
+        <h2>Test your understanding of HTML’s history</h2>
+        <form id="quizForm">
+            <!-- Question 1 -->
+            <div class="question-block">
+                <span class="question-type">Fill in the Blank</span>
+                <p>1. The creator of the first version of HTML is __________.</p>
+                <input type="text" id="q1" name="q1" required>
+            </div>
 
-                <!-- Multiple choice 1 -->
-                <div class="question-block">
-                    <span class="question-type">Multiple Choice</span>
-                    <h3>2. What year was HTML 1.0 first released?</h3>
-                    <div class="radio-group">
-                        <div class="option"><input type="radio" id="q2a" name="q2" value="a"><label for="q2a">1989</label></div>
-                        <div class="option"><input type="radio" id="q2b" name="q2" value="b"><label for="q2b">1991</label></div>
-                        <div class="option"><input type="radio" id="q2c" name="q2" value="c"><label for="q2c">1995</label></div>
-                        <div class="option"><input type="radio" id="q2d" name="q2" value="d"><label for="q2d">1999</label></div>
-                    </div>
-                </div>
+            <!-- Question 2 -->
+            <div class="question-block">
+                <span class="question-type">Multiple Choice</span>
+                <p>2. What year was HTML 1.0 released?</p>
+                <label><input type="radio" name="q2" value="a"> 1989</label><br>
+                <label><input type="radio" name="q2" value="b"> 1991</label><br>
+                <label><input type="radio" name="q2" value="c"> 1995</label><br>
+                <label><input type="radio" name="q2" value="d"> 1999</label>
+            </div>
 
-                <!-- Multiple choice 2 -->
-                <div class="question-block">
-                    <span class="question-type">Multiple Choice</span>
-                    <h3>3. Which HTML version introduced the use of CSS for styling?</h3>
-                    <div class="radio-group">
-                        <div class="option"><input type="radio" id="q3a" name="q3" value="a"><label for="q3a">HTML 2.0</label></div>
-                        <div class="option"><input type="radio" id="q3b" name="q3" value="b"><label for="q3b">HTML 3.2</label></div>
-                        <div class="option"><input type="radio" id="q3c" name="q3" value="c"><label for="q3c">HTML 4.01</label></div>
-                        <div class="option"><input type="radio" id="q3d" name="q3" value="d"><label for="q3d">HTML5</label></div>
-                    </div>
-                </div>
+            <!-- Question 3 -->
+            <div class="question-block">
+                <span class="question-type">Multiple Choice</span>
+                <p>3. Which version of HTML introduced support for CSS?</p>
+                <label><input type="radio" name="q3" value="a"> HTML 2.0</label><br>
+                <label><input type="radio" name="q3" value="b"> HTML 3.2</label><br>
+                <label><input type="radio" name="q3" value="c"> HTML 4.01</label><br>
+                <label><input type="radio" name="q3" value="d"> HTML5</label>
+            </div>
 
-                <!-- Multiple choice 3 -->
-                <div class="question-block">
-                    <span class="question-type">Multiple Choice</span>
-                    <h3>4. What was the main purpose of XHTML?</h3>
-                    <div class="radio-group">
-                        <div class="option"><input type="radio" id="q4a" name="q4" value="a"><label for="q4a">Make HTML compatible with mobile apps</label></div>
-                        <div class="option"><input type="radio" id="q4b" name="q4" value="b"><label for="q4b">Add animation and media support</label></div>
-                        <div class="option"><input type="radio" id="q4c" name="q4" value="c"><label for="q4c">Introduce stricter, XML-based syntax</label></div>
-                        <div class="option"><input type="radio" id="q4d" name="q4" value="d"><label for="q4d">Improve server-side scripting</label></div>
-                    </div>
-                </div>
+            <!-- Question 4 -->
+            <div class="question-block">
+                <span class="question-type">Multiple Choice</span>
+                <p>4. What was the main goal of XHTML?</p>
+                <label><input type="radio" name="q4" value="a"> Introduce animations</label><br>
+                <label><input type="radio" name="q4" value="b"> Enforce stricter XML-based syntax</label><br>
+                <label><input type="radio" name="q4" value="c"> Add multimedia support</label><br>
+                <label><input type="radio" name="q4" value="d"> Improve network speed</label>
+            </div>
 
-                <!-- Multi-select -->
-                <div class="question-block">
-                    <span class="question-type">Multi-Selection</span>
-                    <h3>5. Which of the following features were introduced with HTML5?</h3>
-                    <div class="checkbox-group">
-                        <div class="option"><input type="checkbox" id="q5a" name="q5" value="a"><label for="q5a">Support for video and audio</label></div>
-                        <div class="option"><input type="checkbox" id="q5b" name="q5" value="b"><label for="q5b">Built-in support for tables</label></div>
-                        <div class="option"><input type="checkbox" id="q5c" name="q5" value="c"><label for="q5c">Canvas for graphics and animations</label></div>
-                        <div class="option"><input type="checkbox" id="q5d" name="q5" value="d"><label for="q5d">New semantic tags like &lt;header&gt; and &lt;article&gt;</label></div>
-                    </div>
-                </div>
+            <!-- Question 5 -->
+            <div class="question-block">
+                <span class="question-type">Multi-Selection</span>
+                <p>5. Which of the following features were introduced in HTML5?</p>
+                <label><input type="checkbox" name="q5" value="a"> Audio and video support</label><br>
+                <label><input type="checkbox" name="q5" value="b"> Canvas for 2D graphics</label><br>
+                <label><input type="checkbox" name="q5" value="c"> Semantic tags like &lt;article&gt; and &lt;header&gt;</label><br>
+                <label><input type="checkbox" name="q5" value="d"> Built-in database support</label>
+            </div>
 
-                <div class="button-group">
-                    <button type="submit" class="submit-btn">Submit Quiz</button>
-                    <button type="button" class="reset-btn" id="resetBtn">Retake Quiz</button>
-                </div>
-            </form>
+            <div style="text-align: center;">
+                <button type="button" onclick="gradeQuiz()">Submit</button>
+                <button type="reset">Reset</button>
+            </div>
+        </form>
 
-            <div class="results" id="results"></div>
-        </div>
-    </div>
+        <div id="results" class="results"></div>
+    </main>
+
+    <footer>
+        <p>This is a class project for IT 3203. Visit the <a href="https://ksuweb.github.io/IT3203/" style="color:white;">course site</a>.</p>
+    </footer>
 
     <script>
+        // Correct answers
         const correctAnswers = {
             q1: 'tim berners-lee',
             q2: 'b',
             q3: 'c',
-            q4: 'c',
-            q5: ['a', 'c', 'd']
+            q4: 'b',
+            q5: ['a', 'b', 'c']
         };
 
-        const answerTexts = {
-            q1: 'Tim Berners-Lee',
-            q2: '1991',
-            q3: 'HTML 4.01',
-            q4: 'Introduce stricter, XML-based syntax',
-            q5: 'Support for video and audio, Canvas for graphics and animations, New semantic tags like <header> and <article>'
-        };
-
-        const form = document.getElementById('quizForm');
-        const resultsDiv = document.getElementById('results');
-        const resetBtn = document.getElementById('resetBtn');
-
-        form.addEventListener('submit', function(e) {
-            e.preventDefault();
-
+        function gradeQuiz() {
+            const results = document.getElementById('results');
+            results.innerHTML = '';
             let score = 0;
-            const total = 5;
-            let resultsHTML = '';
 
-            // Question 1
             const q1 = document.getElementById('q1').value.trim().toLowerCase();
-            const q1Correct = q1 === correctAnswers.q1;
-            if (q1Correct) score++;
+            if (q1 === correctAnswers.q1) score++;
+            const q2 = document.querySelector('input[name="q2"]:checked');
+            if (q2 && q2.value === correctAnswers.q2) score++;
+            const q3 = document.querySelector('input[name="q3"]:checked');
+            if (q3 && q3.value === correctAnswers.q3) score++;
+            const q4 = document.querySelector('input[name="q4"]:checked');
+            if (q4 && q4.value === correctAnswers.q4) score++;
 
-            resultsHTML += renderResult(1, q1Correct, document.getElementById('q1').value, answerTexts.q1);
-
-            // Questions 2–4
-            for (let i = 2; i <= 4; i++) {
-                const ans = document.querySelector(`input[name="q${i}"]:checked`)?.value;
-                const isCorrect = ans === correctAnswers[`q${i}`];
-                if (isCorrect) score++;
-                const userAnswerText = ans ? document.querySelector(`label[for="q${i}${ans}"]`).textContent : 'No answer';
-                resultsHTML += renderResult(i, isCorrect, userAnswerText, answerTexts[`q${i}`]);
-            }
-
-            // Question 5
-            const q5Answers = Array.from(document.querySelectorAll('input[name="q5"]:checked')).map(cb => cb.value);
-            const correctQ5 = correctAnswers.q5;
-            const isQ5Correct = arraysEqual(q5Answers.sort(), correctQ5.sort());
-            if (isQ5Correct) score++;
-
-            const userQ5Text = q5Answers.map(v => document.querySelector(`label[for="q5${v}"]`).textContent).join(', ') || 'No answer';
-            resultsHTML += renderResult(5, isQ5Correct, userQ5Text, answerTexts.q5);
-
-            const percentage = Math.round((score / total) * 100);
-            const passed = percentage >= 60;
-
-            resultsDiv.innerHTML = `
-                <div class="overall-result ${passed ? 'pass' : 'fail'}">
-                    ${passed ? '✅ Great job! You passed!' : '❌ Keep studying! You can do it!'}
-                </div>
-                <div class="score-display">${score}/${total} (${percentage}%)</div>
-                ${resultsHTML}
-            `;
-            resultsDiv.classList.add('show');
-            resetBtn.style.display = 'inline-block';
-            resultsDiv.scrollIntoView({ behavior: 'smooth' });
-        });
-
-        resetBtn.addEventListener('click', () => {
-            form.reset();
-            resultsDiv.innerHTML = '';
-            resultsDiv.classList.remove('show');
-            resetBtn.style.display = 'none';
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-
-        function renderResult(num, correct, userAnswer, correctAnswer) {
-            return `
-                <div class="question-result ${correct ? 'correct' : 'incorrect'}">
-                    <div class="result-header">
-                        <strong>Question ${num}</strong>
-                        <span class="result-status ${correct ? 'correct-status' : 'incorrect-status'}">
-                            ${correct ? '✓ Correct' : '✗ Incorrect'}
-                        </span>
-                    </div>
-                    <div class="answer-info">
-                        <div class="your-answer"><strong>Your answer:</strong> ${userAnswer}</div>
-                        ${!correct ? `<div class="correct-answer"><strong>Correct answer:</strong> ${correctAnswer}</div>` : ''}
-                    </div>
-                </div>
-            `;
-        }
-
-        function arraysEqual(a, b) {
-            if (a.length !== b.length) return false;
-            for (let i = 0; i < a.length; i++) {
-                if (a[i] !== b[i]) return false;
-            }
-            return true;
-        }
-    </script>
-</body>
-</html>
+            const q5Selected = Array.from(docu
