@@ -1,229 +1,219 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Devon’s HTML History Quiz</title>
-    <link rel="stylesheet" href="style.css">
-    <style>
-        /* --- Inline quiz styles --- */
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #00c6ff 0%, #0072ff 100%);
-            min-height: 100vh;
-            margin: 0;
-            padding: 0;
-        }
-        header {
-            background-color: #0072ff;
-            color: white;
-            padding: 15px 0;
-            text-align: center;
-        }
-        .menu {
-            display: flex;
-            justify-content: center;
-            list-style-type: none;
-            background: #0056b3;
-            padding: 10px;
-            margin: 0;
-            flex-wrap: wrap;
-        }
-        .menu li {
-            margin: 0 10px;
-        }
-        .menu a {
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        .menu a:hover {
-            text-decoration: underline;
-        }
-        main {
-            max-width: 850px;
-            margin: 40px auto;
-            background: white;
-            border-radius: 12px;
-            padding: 30px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
-        }
-        h1, h2 {
-            text-align: center;
-            color: #0072ff;
-        }
-        .question-block {
-            margin-bottom: 30px;
-            background: #f8f9fa;
-            padding: 20px;
-            border-radius: 10px;
-            border-left: 5px solid #0072ff;
-        }
-        .question-type {
-            background: #0072ff;
-            color: white;
-            padding: 3px 10px;
-            border-radius: 15px;
-            font-size: 0.8em;
-        }
-        input[type="text"] {
-            width: 100%;
-            padding: 10px;
-            font-size: 1em;
-            border-radius: 8px;
-            border: 2px solid #ddd;
-        }
-        input[type="radio"], input[type="checkbox"] {
-            margin-right: 10px;
-        }
-        button {
-            background: #0072ff;
-            color: white;
-            border: none;
-            padding: 12px 20px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 1em;
-            font-weight: bold;
-            margin: 5px;
-        }
-        button:hover {
-            background: #0056b3;
-        }
-        .results {
-            display: none;
-            margin-top: 30px;
-            padding: 20px;
-            border-radius: 10px;
-            background: #f1f1f1;
-        }
-        .pass {
-            background: #d4edda;
-            color: #155724;
-        }
-        .fail {
-            background: #f8d7da;
-            color: #721c24;
-        }
-        .correct {
-            color: green;
-        }
-        .incorrect {
-            color: red;
-        }
-        footer {
-            text-align: center;
-            padding: 20px;
-            background: #0056b3;
-            color: white;
-            margin-top: 40px;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Devon’s HTML History Quiz</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      margin: 0;
+      padding: 20px;
+      color: #333;
+    }
+
+    .container {
+      max-width: 800px;
+      background: #fff;
+      margin: 0 auto;
+      border-radius: 10px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      overflow: hidden;
+    }
+
+    header {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: white;
+      text-align: center;
+      padding: 25px;
+    }
+
+    header h1 {
+      margin-bottom: 10px;
+    }
+
+    form {
+      padding: 30px;
+    }
+
+    .question {
+      margin-bottom: 30px;
+      background: #f8f9fa;
+      border-left: 4px solid #667eea;
+      padding: 20px;
+      border-radius: 8px;
+    }
+
+    .question h3 {
+      margin-bottom: 10px;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      border: 2px solid #ccc;
+      border-radius: 6px;
+      font-size: 1em;
+    }
+
+    .option {
+      margin: 5px 0;
+    }
+
+    button {
+      display: block;
+      margin: 20px auto;
+      padding: 10px 25px;
+      border: none;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: white;
+      border-radius: 6px;
+      font-size: 1.1em;
+      cursor: pointer;
+    }
+
+    button:hover {
+      opacity: 0.9;
+    }
+
+    .results {
+      padding: 20px;
+      text-align: center;
+    }
+
+    .correct {
+      color: #28a745;
+      font-weight: bold;
+    }
+
+    .incorrect {
+      color: #dc3545;
+      font-weight: bold;
+    }
+
+    .reset-btn {
+      background: #6c757d;
+      display: none;
+    }
+  </style>
 </head>
 <body>
+  <div class="container">
     <header>
-        <h1>Devon’s HTML History Quiz</h1>
-        <nav>
-            <ul class="menu">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="topic-devon.html">Devon’s Topic</a></li>
-                <li><a href="topic-jermaine.html">Jermaine’s Topic</a></li>
-                <li><a href="topic-salman.html">Salman’s Topic</a></li>
-                <li><a href="jermaine-concepts.html">Jermaine’s Key Concepts</a></li>
-                <li><a href="salmans-concepts.html">Salman’s Key Concepts</a></li>
-                <li><a href="references.html">References</a></li>
-                <li><a href="concepts.html">Key Concepts</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="devon-quiz.html">Devon’s Quiz</a></li>
-            </ul>
-        </nav>
+      <h1>🧠 Devon’s HTML History Quiz</h1>
+      <p>Test your knowledge of the History of HTML</p>
     </header>
 
-    <main>
-        <h2>Test your understanding of HTML’s history</h2>
-        <form id="quizForm">
-            <!-- Question 1 -->
-            <div class="question-block">
-                <span class="question-type">Fill in the Blank</span>
-                <p>1. The creator of the first version of HTML is __________.</p>
-                <input type="text" id="q1" name="q1" required>
-            </div>
+    <form id="quizForm">
+      <!-- Q1 -->
+      <div class="question">
+        <h3>1. The creator of HTML is __________.</h3>
+        <input type="text" id="q1" placeholder="Type your answer here">
+      </div>
 
-            <!-- Question 2 -->
-            <div class="question-block">
-                <span class="question-type">Multiple Choice</span>
-                <p>2. What year was HTML 1.0 released?</p>
-                <label><input type="radio" name="q2" value="a"> 1989</label><br>
-                <label><input type="radio" name="q2" value="b"> 1991</label><br>
-                <label><input type="radio" name="q2" value="c"> 1995</label><br>
-                <label><input type="radio" name="q2" value="d"> 1999</label>
-            </div>
+      <!-- Q2 -->
+      <div class="question">
+        <h3>2. What year was the first version of HTML introduced?</h3>
+        <div class="option"><input type="radio" name="q2" value="1991"> 1991</div>
+        <div class="option"><input type="radio" name="q2" value="1993"> 1993</div>
+        <div class="option"><input type="radio" name="q2" value="1995"> 1995</div>
+        <div class="option"><input type="radio" name="q2" value="1999"> 1999</div>
+      </div>
 
-            <!-- Question 3 -->
-            <div class="question-block">
-                <span class="question-type">Multiple Choice</span>
-                <p>3. Which version of HTML introduced support for CSS?</p>
-                <label><input type="radio" name="q3" value="a"> HTML 2.0</label><br>
-                <label><input type="radio" name="q3" value="b"> HTML 3.2</label><br>
-                <label><input type="radio" name="q3" value="c"> HTML 4.01</label><br>
-                <label><input type="radio" name="q3" value="d"> HTML5</label>
-            </div>
+      <!-- Q3 -->
+      <div class="question">
+        <h3>3. Which version of HTML introduced support for CSS and improved layout design?</h3>
+        <div class="option"><input type="radio" name="q3" value="HTML 2.0"> HTML 2.0</div>
+        <div class="option"><input type="radio" name="q3" value="HTML 3.2"> HTML 3.2</div>
+        <div class="option"><input type="radio" name="q3" value="HTML 4.01"> HTML 4.01</div>
+        <div class="option"><input type="radio" name="q3" value="HTML5"> HTML5</div>
+      </div>
 
-            <!-- Question 4 -->
-            <div class="question-block">
-                <span class="question-type">Multiple Choice</span>
-                <p>4. What was the main goal of XHTML?</p>
-                <label><input type="radio" name="q4" value="a"> Introduce animations</label><br>
-                <label><input type="radio" name="q4" value="b"> Enforce stricter XML-based syntax</label><br>
-                <label><input type="radio" name="q4" value="c"> Add multimedia support</label><br>
-                <label><input type="radio" name="q4" value="d"> Improve network speed</label>
-            </div>
+      <!-- Q4 -->
+      <div class="question">
+        <h3>4. What major update did HTML5 introduce?</h3>
+        <div class="option"><input type="radio" name="q4" value="Forms and tables"> Forms and tables</div>
+        <div class="option"><input type="radio" name="q4" value="Multimedia and APIs"> Multimedia and APIs</div>
+        <div class="option"><input type="radio" name="q4" value="Text formatting"> Text formatting</div>
+        <div class="option"><input type="radio" name="q4" value="XML validation"> XML validation</div>
+      </div>
 
-            <!-- Question 5 -->
-            <div class="question-block">
-                <span class="question-type">Multi-Selection</span>
-                <p>5. Which of the following features were introduced in HTML5?</p>
-                <label><input type="checkbox" name="q5" value="a"> Audio and video support</label><br>
-                <label><input type="checkbox" name="q5" value="b"> Canvas for 2D graphics</label><br>
-                <label><input type="checkbox" name="q5" value="c"> Semantic tags like &lt;article&gt; and &lt;header&gt;</label><br>
-                <label><input type="checkbox" name="q5" value="d"> Built-in database support</label>
-            </div>
+      <!-- Q5 -->
+      <div class="question">
+        <h3>5. Which of the following are key features or milestones of HTML’s evolution? (Select all that apply)</h3>
+        <div class="option"><input type="checkbox" name="q5" value="HTML 2.0 introduced forms"> HTML 2.0 introduced forms</div>
+        <div class="option"><input type="checkbox" name="q5" value="HTML 4.01 supported CSS"> HTML 4.01 supported CSS</div>
+        <div class="option"><input type="checkbox" name="q5" value="XHTML added stricter rules"> XHTML added stricter rules</div>
+        <div class="option"><input type="checkbox" name="q5" value="HTML5 added multimedia and semantic tags"> HTML5 added multimedia and semantic tags</div>
+      </div>
 
-            <div style="text-align: center;">
-                <button type="button" onclick="gradeQuiz()">Submit</button>
-                <button type="reset">Reset</button>
-            </div>
-        </form>
+      <button type="submit">Submit Quiz</button>
+      <button type="button" class="reset-btn" id="resetBtn">Retake Quiz</button>
+    </form>
 
-        <div id="results" class="results"></div>
-    </main>
+    <div class="results" id="results"></div>
+  </div>
 
-    <footer>
-        <p>This is a class project for IT 3203. Visit the <a href="https://ksuweb.github.io/IT3203/" style="color:white;">course site</a>.</p>
-    </footer>
+  <script>
+    const correctAnswers = {
+      q1: "tim berners-lee",
+      q2: "1991",
+      q3: "HTML 4.01",
+      q4: "Multimedia and APIs",
+      q5: [
+        "HTML 2.0 introduced forms",
+        "HTML 4.01 supported CSS",
+        "XHTML added stricter rules",
+        "HTML5 added multimedia and semantic tags"
+      ]
+    };
 
-    <script>
-        // Correct answers
-        const correctAnswers = {
-            q1: 'tim berners-lee',
-            q2: 'b',
-            q3: 'c',
-            q4: 'b',
-            q5: ['a', 'b', 'c']
-        };
+    const form = document.getElementById('quizForm');
+    const resultsDiv = document.getElementById('results');
+    const resetBtn = document.getElementById('resetBtn');
 
-        function gradeQuiz() {
-            const results = document.getElementById('results');
-            results.innerHTML = '';
-            let score = 0;
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      let score = 0;
+      const total = 5;
 
-            const q1 = document.getElementById('q1').value.trim().toLowerCase();
-            if (q1 === correctAnswers.q1) score++;
-            const q2 = document.querySelector('input[name="q2"]:checked');
-            if (q2 && q2.value === correctAnswers.q2) score++;
-            const q3 = document.querySelector('input[name="q3"]:checked');
-            if (q3 && q3.value === correctAnswers.q3) score++;
-            const q4 = document.querySelector('input[name="q4"]:checked');
-            if (q4 && q4.value === correctAnswers.q4) score++;
+      // Question 1
+      const q1 = document.getElementById('q1').value.trim().toLowerCase();
+      if (q1 === correctAnswers.q1) score++;
 
-            const q5Selected = Array.from(docu
+      // Question 2
+      const q2 = document.querySelector('input[name="q2"]:checked')?.value;
+      if (q2 === correctAnswers.q2) score++;
+
+      // Question 3
+      const q3 = document.querySelector('input[name="q3"]:checked')?.value;
+      if (q3 === correctAnswers.q3) score++;
+
+      // Question 4
+      const q4 = document.querySelector('input[name="q4"]:checked')?.value;
+      if (q4 === correctAnswers.q4) score++;
+
+      // Question 5
+      const q5 = Array.from(document.querySelectorAll('input[name="q5"]:checked')).map(cb => cb.value);
+      if (q5.length === correctAnswers.q5.length && q5.every(v => correctAnswers.q5.includes(v))) score++;
+
+      const percent = Math.round((score / total) * 100);
+      const pass = percent >= 60;
+
+      resultsDiv.innerHTML = `
+        <h2>${pass ? "✅ You Passed!" : "❌ Try Again!"}</h2>
+        <p><strong>Score:</strong> ${score}/${total} (${percent}%)</p>
+      `;
+      resultsDiv.style.color = pass ? "#28a745" : "#dc3545";
+      resetBtn.style.display = "block";
+    });
+
+    resetBtn.addEventListener('click', () => {
+      form.reset();
+      resultsDiv.innerHTML = "";
+      resetBtn.style.display = "none";
+    });
+  </script>
+</body>
+</html>
