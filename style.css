@@ -58,3 +58,36 @@ footer {
   padding: 1em;
   margin-top: 2em;
 }
+
+/* Tablet/Desktop (≥768px) */
+@media (min-width: 768px) {
+  .menu-toggle { display: none; }
+  .menu { display: flex; }
+
+  main {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 2rem;
+  }
+}
+
+/* Small Mobile (≤767px) */
+@media (max-width: 767px) {
+  .menu {
+    display: none;
+    flex-direction: column;
+    background: #1e40af;
+    padding: 1rem;
+  }
+  .menu.show { display: flex; }
+  .menu-toggle { display: block; }
+
+  .responsive-table th, .responsive-table td {
+    display: block;
+    width: 100%;
+  }
+
+  .quiz-form input, .quiz-form select, .quiz-form button {
+    width: 100%;
+  }
+}
