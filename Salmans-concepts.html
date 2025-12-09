@@ -5,64 +5,105 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Salman's Key Concepts</title>
   <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
 </head>
 <body>
   <header>
-    <h1>Salman's Key Concepts</h1>
+    <h1>Salman's Key Concepts – Responsive Design</h1>
     <nav>
+      <button class="menu-toggle" aria-label="Toggle navigation menu">Menu</button>
       <ul class="menu">
         <li><a href="index.html">Home</a></li>
         <li><a href="topic-devon.html">Devon’s Topic</a></li>
         <li><a href="topic-jermaine.html">Jermaine’s Topic</a></li>
         <li><a href="topic-salman.html">Salman’s Topic</a></li>
-        <li><a href="concepts.html">Key Concepts</a></li>
+        <li><a href="concepts.html">Devon’s Key Concepts</a></li>
+        <li><a href="jermaine-concepts.html">Jermaine’s Key Concepts</a></li>
+        <li><a href="Salmans-concepts.html" class="active">Salman’s Key Concepts</a></li>
         <li><a href="references.html">References</a></li>
-        <li><a href="about.html">About</a></li>
+        <li><a href="about.html">About the Team</a></li>
       </ul>
     </nav>
   </header>
 
   <main>
-    <ol>
-      <li>
-        <strong>Concept 1 – Responsive Web Design:</strong> 
-        A design approach that ensures websites adapt to different screen sizes and devices. It helps maintain usability and visual balance across desktops, tablets, and smartphones.
-      </li>
+    <section>
+      <h2>Key Concepts for Responsive Web Design</h2>
+      <p>
+        Below are the core terms and ideas that show up in my research on responsive
+        web design. Understanding these concepts helps explain how we built our site
+        to be mobile friendly.
+      </p>
+    </section>
 
-      <li>
-        <strong>Concept 2 – CSS Flexbox:</strong> 
-        A modern layout model that allows developers to align and distribute space among items in a container, even when their size is unknown or dynamic. It’s ideal for creating responsive navigation bars and grids.
-      </li>
+    <section>
+      <ol>
+        <li>
+          <strong>Responsive Web Design (RWD):</strong>
+          An approach where a single website automatically adjusts its layout,
+          images, and content to work well on phones, tablets, and desktops.
+        </li>
 
-      <li>
-        <strong>Concept 3 – CSS Grid:</strong> 
-        A two-dimensional layout system that enables precise arrangement of elements into rows and columns. Grid layouts make it easier to organize content consistently across a site.
-      </li>
+        <li>
+          <strong>Viewport Meta Tag:</strong>
+          A special HTML tag (for example
+          <code>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</code>)
+          that tells the browser how to scale the page on mobile devices.
+        </li>
 
-      <li>
-        <strong>Concept 4 – Media Queries:</strong> 
-        A core feature of CSS that applies different styles depending on screen size, resolution, or orientation. Media queries are what make websites mobile-friendly.
-      </li>
+        <li>
+          <strong>Fluid Grid Layout:</strong>
+          A layout built with relative units (like percentages) instead of fixed pixels,
+          allowing columns to grow or shrink based on the available screen width.
+        </li>
 
-      <li>
-        <strong>Concept 5 – Semantic HTML:</strong> 
-        The use of meaningful tags such as <code>&lt;header&gt;</code>, <code>&lt;section&gt;</code>, and <code>&lt;footer&gt;</code> to improve accessibility and SEO while giving structure to web pages.
-      </li>
+        <li>
+          <strong>Flexible Images:</strong>
+          Images styled so they do not overflow their containers on small screens,
+          usually by applying <code>max-width: 100%</code> and auto height.
+        </li>
 
-      <li>
-        <strong>Concept 6 – CSS Selectors:</strong> 
-        Patterns used to target and style specific HTML elements. Common types include class selectors (<code>.classname</code>), ID selectors (<code>#id</code>), and element selectors (<code>h1</code>).
-      </li>
+        <li>
+          <strong>Media Queries:</strong>
+          CSS rules that only apply under certain conditions, such as a maximum or
+          minimum screen width. Media queries are what let us change layouts for
+          mobile vs. desktop.
+        </li>
 
-      <li>
-        <strong>Concept 7 – Hover Effects:</strong> 
-        A CSS technique that changes the appearance of a webpage element when the user hovers over it. This adds interactivity and enhances the user experience.
-      </li>
-    </ol>
+        <li>
+          <strong>Mobile-First Design:</strong>
+          A design philosophy where we start by designing for small screens and
+          layer on additional styles for larger breakpoints. This encourages
+          simplicity and performance.
+        </li>
+
+        <li>
+          <strong>Hamburger Menu:</strong>
+          A menu icon (usually three horizontal lines) that toggles navigation open
+          and closed on mobile screens, saving vertical space.
+        </li>
+
+        <li>
+          <strong>Breakpoints:</strong>
+          Specific width ranges where the layout changes. For example, under 768px
+          we might switch to a single column and stack the navigation vertically.
+        </li>
+
+        <li>
+          <strong>Accessibility in RWD:</strong>
+          Making sure responsive sites are still usable with screen readers, keyboard
+          navigation, and proper color contrast. RWD should not break accessibility.
+        </li>
+      </ol>
+    </section>
   </main>
 
   <footer>
-    <p>This is a class project for IT 3203. Visit the <a href="https://ksuweb.github.io/IT3203/">course site</a>.</p>
+    <p>
+      This is a class project for IT 3203.
+      Visit the <a href="https://ksuweb.github.io/IT3203/">course site</a>.
+    </p>
   </footer>
 </body>
 </html>
+
