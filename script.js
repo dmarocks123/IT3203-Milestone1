@@ -1,81 +1,148 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>About the Team</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
+// script.js
+// Injects a reusable site header + handles mobile menu behavior.
+// Safe to include on every page; will not duplicate if header exists.
 
-  <header>
-    <h1>About the Team</h1>
+(function () {
+  // Header HTML (edit links/text here if needed)
+  const headerHTML = `
+    <div class="site-header-inner" id="injected-site-header">
+      <div class="brand">
+        <a href="index.html" class="brand-link">Project Site</a>
+      </div>
 
-    <!-- Mobile Menu Button -->
-    <button class="menu-toggle">☰ Menu</button>
+      <button class="menu-toggle" aria-expanded="false" aria-controls="main-navigation" aria-label="Toggle navigation">
+        <span class="menu-icon">☰</span>
+        <span class="visually-hidden">Menu</span>
+      </button>
 
-    <nav>
-      <ul class="menu">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="topic-devon.html">Devon’s Topic</a></li>
-        <li><a href="topic-jermaine.html">Jermaine’s Topic</a></li>
-        <li><a href="topic-salman.html">Salman’s Topic</a></li>
-        <li><a href="jermaine-concepts.html">Jermaine’s Key Concepts</a></li>
-        <li><a href="Salmans-concepts.html">Salman’s Key Concepts</a></li>
-        <li><a href="references.html">References</a></li>
-        <li><a href="concepts.html">Key Concepts</a></li>
-        <li><a href="about.html">About</a></li>
-      </ul>
-    </nav>
-  </header>
+      <nav id="main-navigation" class="main-nav" role="navigation" aria-label="Main">
+        <ul class="menu">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="topic-devon.html">Devon’s Topic</a></li>
+          <li><a href="topic-jermaine.html">Jermaine’s Topic</a></li>
+          <li><a href="topic-salman.html">Salman’s Topic</a></li>
+          <li><a href="jermaine-concepts.html">Jermaine’s Key Concepts</a></li>
+          <li><a href="Salmans-concepts.html">Salman’s Key Concepts</a></li>
+          <li><a href="references.html">References</a></li>
+          <li><a href="concepts.html">Key Concepts</a></li>
+          <li><a href="about.html">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  `;
 
-  <main>
+  // Utility: create visually-hidden CSS for accessibility if not present
+  function ensureVisuallyHiddenStyle() {
+    if (document.getElementById('vh-style')) return;
+    const css = `.visually-hidden{position:absolute!important;height:1px;width:1px;overflow:hidden;clip:rect(1px,1px,1px,1px);white-space:nowrap;border:0;padding:0;margin:-1px}`;
+    const style = document.createElement('style');
+    style.id = 'vh-style';
+    style.appendChild(document.createTextNode(css));
+    document.head.appendChild(style);
+  }
 
-    <!-- Devon Section -->
-    <section>
-      <h2>Devon Anderson</h2>
-      <p>
-        I’m a student in IT 3203. For this project, I created the topic page on the history 
-        of HTML, added my key concepts, contributed to the references page, 
-        and set up the GitHub Pages site for the group.
-      </p>
-    </section>
+  // Insert header if not already present (guard against duplicates)
+  function injectHeader() {
+    // If there's an element with id 'injected-site-header' we assume header already exists
+    if (document.getElementById('injected-site-header')) return;
 
-    <!-- Jermaine Section -->
-    <section>
-      <h2>Jermaine</h2>
-      <p>
-        I am an Information Technology major with a passion for network security 
-        and artificial intelligence. My interests include sports, technology, and gaming.
-      </p>
-      <p>
-        My role in this project is to assist with entering information across all pages 
-        and ensuring that all pages link correctly and consistently.
-      </p>
-    </section>
+    // If page already has a header element with meaningful nav, do not inject
+    const existingHeader = document.querySelector('header');
+    if (existingHeader && existingHeader.querySelector('.menu')) {
+      // But if it's empty header, we can append to it
+      if (!existingHeader.querySelector('#injected-site-header')) {
+        existingHeader.insertAdjacentHTML('beforeend', headerHTML);
+      }
+      return;
+    }
 
-    <!-- Salman Section -->
-    <section>
-      <h2>Salman</h2>
-      <p>
-        My name is <strong>Mirza Salman Baig</strong>, and I’m an Information Technology student 
-        passionate about how web development combines user experience, data, and 
-        functionality. I enjoy learning how front-end tools such as HTML, CSS, and 
-        JavaScript work together to create responsive and interactive websites.
-      </p>
-    </section>
+    // If there is no <header>, create one and insert at top of body
+    const headerEl = existingHeader || document.createElement('header');
+    if (!existingHeader) {
+      document.body.insertBefore(headerEl, document.body.firstChild);
+    }
+    headerEl.insertAdjacentHTML('beforeend', headerHTML);
+  }
 
-  </main>
+  // Menu behavior: toggle, close on link click, reset on resize
+  function wireMenuBehavior() {
+    const toggle = document.querySelector('.menu-toggle');
+    const nav = document.getElementById('main-navigation');
+    const menu = nav ? nav.querySelector('.menu') : null;
 
-  <footer>
-    <p>
-      This is a class project for IT 3203. Visit the 
-      <a href="https://ksuweb.github.io/IT3203/">course site</a>.
-    </p>
-  </footer>
+    if (!toggle || !menu || !nav) return;
 
-  <!-- JS for responsive mobile menu -->
-  <script src="script.js"></script>
+    // Toggle function
+    function toggleMenu() {
+      const isOpen = menu.classList.toggle('show');
+      toggle.setAttribute('aria-expanded', String(isOpen));
+      // For small screens, ensure nav is focusable when open
+      if (isOpen) {
+        nav.style.display = 'block';
+      } else {
+        nav.style.display = '';
+      }
+    }
 
-</body>
-</html>
+    // Open/close on toggle click
+    toggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      toggleMenu();
+    });
+
+    // Close menu when clicking a link inside the menu
+    menu.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => {
+        menu.classList.remove('show');
+        toggle.setAttribute('aria-expanded', 'false');
+        nav.style.display = '';
+      });
+    });
+
+    // Close menu when clicking outside (mobile)
+    document.addEventListener('click', (e) => {
+      if (!menu.contains(e.target) && !toggle.contains(e.target)) {
+        if (menu.classList.contains('show')) {
+          menu.classList.remove('show');
+          toggle.setAttribute('aria-expanded', 'false');
+          nav.style.display = '';
+        }
+      }
+    });
+
+    // Reset on resize/orientation change: if desktop width, remove mobile classes
+    function handleResize() {
+      if (window.innerWidth >= 768) {
+        menu.classList.remove('show');
+        toggle.setAttribute('aria-expanded', 'false');
+        nav.style.display = '';
+      }
+    }
+    window.addEventListener('resize', handleResize);
+    window.addEventListener('orientationchange', handleResize);
+  }
+
+  // Mark current page nav link with .active for visual cue
+  function markActiveLink() {
+    const pathname = window.location.pathname.split('/').pop() || 'index.html';
+    const anchors = document.querySelectorAll('.main-nav .menu a');
+    anchors.forEach((a) => {
+      const href = a.getAttribute('href');
+      if (!href) return;
+      // Compare only file names
+      const linkFile = href.split('/').pop();
+      if (linkFile === pathname || (linkFile === 'index.html' && pathname === '')) {
+        a.classList.add('active');
+        a.setAttribute('aria-current', 'page');
+      }
+    });
+  }
+
+  // Run all setup when DOM is ready
+  document.addEventListener('DOMContentLoaded', () => {
+    ensureVisuallyHiddenStyle();
+    injectHeader();
+    wireMenuBehavior();
+    markActiveLink();
+  });
+})();
