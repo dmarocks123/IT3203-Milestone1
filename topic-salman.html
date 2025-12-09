@@ -3,103 +3,144 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Responsive Web Design</title>
+  <title>Responsive Web Design – Salman</title>
   <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
 </head>
 <body>
   <header>
-    <h1>Responsive Web Design</h1>
+    <h1>Responsive Web Design (RWD)</h1>
     <nav>
+      <button class="menu-toggle" aria-label="Toggle navigation menu">Menu</button>
       <ul class="menu">
         <li><a href="index.html">Home</a></li>
         <li><a href="topic-devon.html">Devon’s Topic</a></li>
         <li><a href="topic-jermaine.html">Jermaine’s Topic</a></li>
-        <li><a href="topic-salman.html">Salman’s Topic</a></li>
-        <li><a href="Salmans-concepts.html">Salman’s Key Concepts</a></li>
+        <li><a href="topic-salman.html" class="active">Salman’s Topic</a></li>
+        <li><a href="concepts.html">Devon’s Key Concepts</a></li>
         <li><a href="jermaine-concepts.html">Jermaine’s Key Concepts</a></li>
+        <li><a href="Salmans-concepts.html">Salman’s Key Concepts</a></li>
         <li><a href="references.html">References</a></li>
-        <li><a href="concepts.html">Key Concepts</a></li>
-        <li><a href="about.html">About</a></li>
+        <li><a href="about.html">About the Team</a></li>
       </ul>
     </nav>
   </header>
 
   <main>
-    <h2>Introduction</h2>
-    <p>
-      Responsive Web Design (RWD) is an essential part of modern web development. It ensures that websites automatically adjust their layout, images, and navigation to fit different devices — from large desktop monitors to tablets and smartphones. This flexibility helps maintain a consistent user experience regardless of screen size or orientation.
-    </p>
+    <section>
+      <h2>What Is Responsive Web Design?</h2>
+      <p>
+        Responsive Web Design (RWD) is an approach where a website’s layout, images,
+        and content automatically adapt to the user’s screen size. Instead of building
+        separate sites for phones, tablets, and desktops, a single code base behaves
+        “fluidly” across all devices.
+      </p>
+      <p>
+        RWD relies heavily on CSS techniques such as fluid grids, flexible images,
+        and media queries to create a consistent and accessible experience.
+      </p>
+      <img src="https://dummyimage.com/800x400/cccccc/000000&text=Responsive+Layout+Example"
+           alt="Illustration of a responsive layout on phone, tablet, and desktop">
+    </section>
 
-    <h2>The Importance of Responsiveness</h2>
-    <p>
-      Before responsive design, web developers had to create separate desktop and mobile versions of the same site. This made maintenance difficult and often led to inconsistent designs. Responsive Web Design eliminates that problem by using flexible grids, layouts, and media queries to make one site work on all devices. As mobile internet usage continues to rise, responsive design has become a standard practice for all modern websites.
-    </p>
+    <section class="card">
+      <h2>Why Responsive Design Matters</h2>
+      <ul>
+        <li><strong>Mobile traffic dominates:</strong> A large percentage of users visit websites from phones.</li>
+        <li><strong>Better user experience:</strong> Text is readable, buttons are tappable, and layout is clean.</li>
+        <li><strong>SEO benefits:</strong> Search engines reward sites that are mobile friendly.</li>
+        <li><strong>Single code base:</strong> Easier maintenance than having separate “m-dot” mobile sites.</li>
+      </ul>
+    </section>
 
-    <h2>Core Principles of Responsive Design</h2>
-    <p>
-      The main goal of RWD is to make websites adaptable and user-friendly across platforms. It follows three key technical principles:
-    </p>
-    <ul>
-      <li><strong>Fluid Grids:</strong> Layouts are built using relative units (like percentages) instead of fixed pixels, allowing them to resize smoothly.</li>
-      <li><strong>Flexible Images:</strong> Images scale within their containers, preventing overflow on smaller screens.</li>
-      <li><strong>Media Queries:</strong> CSS rules that apply styles based on screen size, resolution, or orientation.</li>
-    </ul>
+    <section>
+      <h2>Core Techniques Used in RWD</h2>
 
-    <h2>Evolution of Responsive Design</h2>
-    <p>
-      The concept of responsive design was first popularized by Ethan Marcotte in 2010. As mobile browsing grew rapidly, developers realized that fixed-width layouts could not accommodate the variety of devices people used. Over time, frameworks like Bootstrap and CSS Grid helped standardize responsive layouts, making the development process faster and more efficient.
-    </p>
+      <h3>1. Fluid Layouts</h3>
+      <p>
+        Instead of fixed pixel values, fluid layouts use percentages and relative units
+        (like <code>rem</code> and <code>%</code>) so elements scale naturally as the
+        viewport width changes.
+      </p>
 
-    <h2>Example Table of Screen Breakpoints</h2>
-    <table>
-      <tr>
-        <th>Device Type</th>
-        <th>Screen Width</th>
-        <th>Common Layout Behavior</th>
-      </tr>
-      <tr>
-        <td>Mobile</td>
-        <td>up to 600px</td>
-        <td>Single column layout</td>
-      </tr>
-      <tr>
-        <td>Tablet</td>
-        <td>601px – 1024px</td>
-        <td>Two-column layout</td>
-      </tr>
-      <tr>
-        <td>Desktop</td>
-        <td>1025px and above</td>
-        <td>Multi-column layout with sidebar</td>
-      </tr>
-    </table>
+      <h3>2. Flexible Images</h3>
+      <p>
+        Images are sized using max-width rules such as <code>img { max-width: 100%; }</code>.
+        This prevents images from overflowing on small screens.
+      </p>
 
-    <h2>Image Example Placeholder</h2>
-    <p>
-      Below is a placeholder image that can later be replaced with an actual example of a responsive layout:
-    </p>
-    <img src="" alt="Responsive web design layout placeholder">
+      <h3>3. CSS Media Queries</h3>
+      <p>
+        Media queries let us apply specific CSS when the device width hits certain breakpoints
+        (for example, under 768px for phones). They are the key to a layout that “snaps” into
+        different looks for mobile, tablet, and desktop.
+      </p>
+    </section>
 
-    <h2>Benefits of Responsive Web Design</h2>
-    <ul>
-      <li>Improves user experience on all devices.</li>
-      <li>Reduces maintenance by using a single website instead of multiple versions.</li>
-      <li>Enhances SEO ranking, as search engines favor mobile-friendly sites.</li>
-      <li>Supports accessibility and usability best practices.</li>
-    </ul>
+    <section>
+      <h2>Common Breakpoints and Layout Behavior</h2>
+      <div class="table-wrapper">
+        <table class="responsive-table">
+          <caption>Typical Responsive Breakpoints</caption>
+          <thead>
+            <tr>
+              <th>Breakpoint</th>
+              <th>Device Type</th>
+              <th>Layout Behavior</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>&lt; 600px</td>
+              <td>Small phones</td>
+              <td>Single-column layout, stacked navigation, large tap targets.</td>
+            </tr>
+            <tr>
+              <td>600px – 768px</td>
+              <td>Large phones / small tablets</td>
+              <td>Single column, larger text, more generous spacing.</td>
+            </tr>
+            <tr>
+              <td>769px – 1200px</td>
+              <td>Tablets / small laptops</td>
+              <td>Two-column layout, visible horizontal navigation.</td>
+            </tr>
+            <tr>
+              <td>&gt; 1200px</td>
+              <td>Desktops / large displays</td>
+              <td>Multi-column layout, extra white space, larger max width.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
 
-    <h2>Key Takeaways</h2>
-    <ul>
-      <li>Responsive design adapts to screen size using flexible layouts and CSS media queries.</li>
-      <li>It ensures visual consistency and functionality across devices.</li>
-      <li>RWD is now a required standard in professional web development.</li>
-    </ul>
+    <section>
+      <h2>Best Practices for Mobile-Friendly Design</h2>
+      <ul>
+        <li>Use a proper <code>&lt;meta name="viewport"&gt;</code> tag on every page.</li>
+        <li>Ensure buttons and links have enough size and spacing for fingers.</li>
+        <li>Avoid tiny fonts; aim for ~16px base size on mobile.</li>
+        <li>Make navigation simple and collapsible (hamburger menu).</li>
+        <li>Test on multiple devices or at least using browser dev tools.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Summary</h2>
+      <ul>
+        <li>Responsive design adapts the layout to the available screen width.</li>
+        <li>It uses fluid grids, flexible images, and CSS media queries.</li>
+        <li>RWD is now the default expectation for modern websites.</li>
+        <li>Good responsive design improves both usability and accessibility.</li>
+      </ul>
+    </section>
   </main>
 
   <footer>
     <p>
-      This is a class project for IT 3203. Visit the
-      <a href="https://ksuweb.github.io/IT3203/">course site</a>.
+      This is a class project for IT 3203.
+      Visit the <a href="https://ksuweb.github.io/IT3203/">course site</a>.
     </p>
   </footer>
 </body>
